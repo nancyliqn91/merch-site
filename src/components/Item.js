@@ -14,7 +14,7 @@ function Item(props){
 
   let itemDisplay = null;
   if (props.quantity <= 0) {
-    itemDisplay = <p>{props.name} is outof stock</p>
+    itemDisplay = <p>{props.name} is out of stock</p>
   } else {
     itemDisplay =
     <>
@@ -32,14 +32,10 @@ function Item(props){
         {itemDisplay}
         <form onSubmit={handleSubmit}>
           <input type='number' min='1' max='50' name='quantity' className='form-control'/>
+          <button>Restock</button>
         </form>
-
       </div>
-      <h3>{props.name}</h3>
-      <h5>Description: {props.description}</h5>
-      <h5>Stock Quantity: {props.quantity}</h5>
-      {/* <button>buy item</button> */}
-      <hr/>
+      
     </React.Fragment>
   );
 }
@@ -48,7 +44,10 @@ Item.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   quantity: PropTypes.number,
-  id: PropTypes.string
+  id: PropTypes.string,
+  onBuyItem: PropTypes.func,
+  onRestockItem: PropTypes.func,
+  onItemSelect: PropTypes.func
 };
 
 export default Item;

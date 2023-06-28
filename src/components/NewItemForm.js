@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { v4 } from 'uuid';
 
-function AddItemForm(props){
+function NewItemForm(props){
 
   function handleNewItemFormSubmission(event) {
     event.preventDefault();
@@ -23,6 +23,7 @@ function AddItemForm(props){
           placeholder='sweatshirt'
           className='form-control' />
         <textarea
+        type='text'
           name='description'
           placeholder='Size L crewneck'
           className='form-control' />
@@ -37,8 +38,8 @@ function AddItemForm(props){
   );
 }
 
-AddItemForm.propTypes = {
+NewItemForm.propTypes = {
   onNewItemCreation: PropTypes.func
 };
 
-export default AddItemForm;
+export default NewItemForm;
