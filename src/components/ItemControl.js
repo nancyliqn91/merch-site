@@ -2,6 +2,7 @@ import React from 'react';
 import NewItemForm from './NewItemForm';
 import ItemList from './ItemList';
 import ItemDetails from './ItemDetails';
+import EditItemForm from './EditItemForm';
 
 class ItemControl extends React.Component {
 
@@ -10,8 +11,33 @@ class ItemControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       mainItemList: [],
-      selectedItem: null 
+      selectedItem: null,
+      editing: false,
     };
+  }
+  
+  handleEditingItemInList = (itemToEdit) => {
+    const editedMainItemList = this.state.mainItemList
+      .filter(item => item.id !== this.state.selectedItem.id)  
+      .concat(itemToEdit); 
+    this.setState({
+        mainItemList: editedMainItemList,
+        editing: false,
+        selectedItem: null
+      });
+  }
+
+  handleDeletingItem = (id) => {
+    const newMainItemList = this.state.mainItemList.filter(item => item.id !== id);
+    this.setState({
+      mainItemList: newMainItemList,
+      selectedItem: null
+    })
+  }
+
+  handleEditClick = () => {
+    console.log("handleEditClick reached!");
+    this.setState({editing: true});
   }
 
   handleNewItemToList = (newItem) => {
@@ -22,39 +48,17 @@ class ItemControl extends React.Component {
     });
   }
 
-  handleBuyItem = (id) => {
-    let selectedItem = this.state.mainItemList.find(item => item.id === id);
-    selectedItem.quantity -= 1;
-    const newMainItemList = this.state.mainItemList.map((item) => { return item.id === id ? selectedItem : item});
-    this.setState({mainItemList: newMainItemList});
-  }
-
-  handleRestockItem = (id, stock) => {
-    let selectedItem = this.state.mainItemList.find(item => item.id === id);
-    selectedItem.quantity += stock;
-    const newMainItemList = this.state.mainItemList.map((item => { return item.id === id? selectedItem : item}));
-    this.setState({mainItemList: newMainItemList});
-
-  }
-
   handleChangeSelectItem = (id) => {
-    const selectedItem = this.state.mainItemList.find(item => item.id === id);
+    const selectedItem = this.state.mainItemList.filter(item => item.id === id)[0];
     this.setState({selectedItem: selectedItem});
   }
 
-  handleDeleteItem = (id) => {
-    const newMainItemList = this.state.mainItemList.filter(item => item.id !== id);
-    this.setState({
-      mainItemList: newMainItemList,
-      selectedItem: null
-    })
-  }
-  
   handleClick = () => {
     if (this.state.selectedItem != null) {
       this.setState({
         formVisibleOnPage: false,
-        selectedItem: null
+        selectedItem: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
@@ -62,19 +66,59 @@ class ItemControl extends React.Component {
       }));
     }
   }
-  
+
+  handleBuyClick = () => {
+    const selectedItem = this.state.selectedItem;
+
+    if (selectedItem.quantity > 0) {
+    this.setState({mainItemList: this.state.mainItemList.filter(item => item.id !== selectedItem.id).concat({...selectedItem, quantity: selectedItem.quantity - 1}), selectedItem: null})
+    }
+
+  }
+
+  // handleBuyItem = () => {
+  //   selectedItem.quantity -= 1;
+  //   const remainItemList = this.state.mainItemList
+  //     .filter(item => item.id !== this.state.selectedItem.id)  
+  //     .concat(selectedItem); 
+
+  //   this.setState({
+  //       mainItemList: remainItemList,
+  //       editing: false,
+  //       selectedItem: null
+  //     });
+  // }
+
+  // handleRestockItem = (id, stock) => {
+  //   let selectedItem = this.state.mainItemList.find(item => item.id === id);
+  //   selectedItem.quantity += stock;
+  //   const newMainItemList = this.state.mainItemList.map((item => { return item.id === id? selectedItem : item}));
+  //   this.setState({mainItemList: newMainItemList});
+  // }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null; 
     
-    if (this.state.selectedItem != null) {
-      currentlyVisibleState = <ItemDetails item={this.state.selectedItem} onDeleteItem={this.handleDeleteItem}/>
+    if (this.state.editing) {
+      currentlyVisibleState = (
+        <EditItemForm item = {this.state.selectedItem} onEditItem = {this.handleEditingItemInList} />
+      );
+      buttonText = 'Return to Item List';
+    } 
+    else if (this.state.selectedItem != null) {
+      currentlyVisibleState = <ItemDetails item={this.state.selectedItem} onClickingDelete={this.handleDeletingItem} onClickingEdit={this.handleEditClick}  onClickingBuy={this.handleBuyClick}
+      />
+
       buttonText = "Return to Item List";
-    } else if (this.state.formVisibleOnPage) {
+    } 
+    else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleNewItemToList} />;
+
       buttonText = "Return to Item List"; 
-    } else {
-      currentlyVisibleState = <ItemList itemList={this.state.mainItemList} onBuyItem={this.handleBuyItem} onRestockItem={this.handleRestockItem} onItemSelect={this.handleChangeSelectItem}/>;
+    } 
+    else {
+      currentlyVisibleState = <ItemList itemList={this.state.mainItemList} onItemSelect={this.handleChangeSelectItem}/>;
       buttonText = "add item";
     }
 

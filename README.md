@@ -14,7 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-go to https://github.com/myName/myProject
+go to https://github.com/ChrisRDavila/merch-site
 Clone the GitHub repository.
 In your terminal/command line go into the folder that was cloned and run "npm install", this will downloading all the package dependencies.
 Next run "npm run start" to start the server.

@@ -6,14 +6,17 @@ function ItemList(props){
   return (
     <React.Fragment>
       {props.itemList.map((item) => 
-        <Item name={item.name}
+        <Item 
+        whenItemClicked = { props.onItemSelect }
+        name={item.name}
         description={item.description}
         quantity={item.quantity}
         id={item.id}
         key={item.id}
-        onBuyItem={props.onBuyItem}
-        onRestockItem={props.onRestockItem}
-        onItemSelect={props.onItemSelect}/>
+        // onBuyItem={props.onBuyItem}
+        // onRestockItem={props.onRestockItem}
+        // onItemSelect={props.onItemSelect}
+        />
       )}
     </React.Fragment>
   );
@@ -21,9 +24,10 @@ function ItemList(props){
 
 ItemList.propTypes = {
   itemList: PropTypes.array,
-  onBuyItem: PropTypes.func,
-  onItemSelect: PropTypes.func,
-  onRestockItem: PropTypes.func,
+  onItemSelect: PropTypes.func
+  // onBuyItem: PropTypes.func,
+  // onItemSelect: PropTypes.func,
+  // onRestockItem: PropTypes.func,
 };
 
 export default ItemList;
