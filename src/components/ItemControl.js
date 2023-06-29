@@ -73,7 +73,6 @@ class ItemControl extends React.Component {
     if (selectedItem.quantity > 0) {
     this.setState({mainItemList: this.state.mainItemList.filter(item => item.id !== selectedItem.id).concat({...selectedItem, quantity: selectedItem.quantity - 1}), selectedItem: null})
     }
-
   }
 
   // handleBuyItem = () => {
@@ -87,13 +86,6 @@ class ItemControl extends React.Component {
   //       editing: false,
   //       selectedItem: null
   //     });
-  // }
-
-  // handleRestockItem = (id, stock) => {
-  //   let selectedItem = this.state.mainItemList.find(item => item.id === id);
-  //   selectedItem.quantity += stock;
-  //   const newMainItemList = this.state.mainItemList.map((item => { return item.id === id? selectedItem : item}));
-  //   this.setState({mainItemList: newMainItemList});
   // }
 
   render(){
