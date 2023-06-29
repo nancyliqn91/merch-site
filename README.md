@@ -1,22 +1,33 @@
-# Getting Started with Create React App
+# Merch Site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### A practice merch site showcasing full CRUD (Create, Read, Update, Delete) functionality in a React application.
 
-## Available Scripts
+#### By Qian Li, Gareth, and Ross
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+* _React
+* _JSX
+* _Node.js_
+* _javascript_
+* _Html_
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Description
+Application to sell merchandise for a band, has full crud functionality and will not allow consumer to buy merch once quantity is 0.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup/Installation Requirements
 
-go to https://github.com/ChrisRDavila/merch-site
-Clone the GitHub repository.
-In your terminal/command line go into the folder that was cloned and run "npm install", this will downloading all the package dependencies.
-Next run "npm run start" to start the server.
-Once the server loads, the webpage should load automatically but if not type in the localhost route that your terminal shows like `https://localhost:5001/`.
-The user should have full CRUD functionality.
+* Go to https://github.com/ChrisRDavila/merch-site
+to clone the GitHub repository.
+* In your terminal/command line, go into the folder that was cloned and run "npm install", this will downloading all the package dependencies.
+* Next run "npm run start" to start the server. Once the server loads, the webpage should load automatically but if not type in the localhost route that your terminal shows like `https://localhost:3000/`.
+
+## Known Bugs
+
+* _no restock function_
+
+## License
+[MIT](https://yourlicesnepage)
+
+
+
