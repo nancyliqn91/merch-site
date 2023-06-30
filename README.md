@@ -6,28 +6,32 @@
 
 ## Technologies Used
 
-* _React
-* _JSX
+* _React_
+* _JSX_
 * _Node.js_
 * _javascript_
 * _Html_
+* _CSS_
+* _Bootstrap_
+* VS Code
 
 ## Description
 Application to sell merchandise for a band, has full crud functionality and will not allow consumer to buy merch once quantity is 0.
 
 ## Setup/Installation Requirements
 
-* Go to https://github.com/ChrisRDavila/merch-site
+* Go to https://github.com/nancyliqn91/merch-site
 to clone the GitHub repository.
 * In your terminal/command line, go into the folder that was cloned and run "npm install", this will downloading all the package dependencies.
-* Next run "npm run start" to start the server. Once the server loads, the webpage should load automatically but if not type in the localhost route that your terminal shows like `https://localhost:3000/`.
+* Next run "npm run start" to start the server. Once the server loads, the webpage should load automatically but if not type in the localhost route that your terminal shows like `https://localhost:3000`.
 
 ## Known Bugs
 
-* _no restock function_
+* No known bugs
 
 ## License
-[MIT](https://yourlicesnepage)
+[MIT](license.txt)
+Copyright (c) 2023 Qian Li, Gareth, and Ross
 
 
 
